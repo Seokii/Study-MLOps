@@ -3,7 +3,7 @@ Kubeflow를 공부하며 자료를 남기기 위해 생성한 저장소입니다
 Kubeflow는 참고할 만한 자료가 상대적으로 적어 공부하기가 어렵다고 생각합니다.  
 누군가 이 저장소를 보고 MLOps에 대한 전반적인 과정을 Kubeflow로 쉽게 접근할 수 있으면 하는 바람으로 작성하고 있습니다.  
 Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습니다.  
-[https://seokii.tistory.com/category/MLOps](https://seokii.tistory.com/category/MLOps)
+[https://seokii.tistory.com/category/MLOps](https://seokii.tistory.com/category/MLOps){: target="_blank"}
 <br><br>
 
 ## 1. What's Kubernetes & Kubeflow?
@@ -30,8 +30,8 @@ Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습�
 - 모델을 안전하고 확장이 가능하도록 프로덕션으로 옮기는 인프라스트럭쳐
 
 참고 사이트
-- [쿠버네티스란 무엇인가?](https://kubernetes.io/ko/docs/concepts/overview/)  
-- [쿠브플로우 공식사이트](https://www.kubeflow.org/)  
+- [쿠버네티스란 무엇인가?](https://kubernetes.io/ko/docs/concepts/overview/){: target="_blank"}  
+- [쿠브플로우 공식사이트](https://www.kubeflow.org/){: target="_blank"}  
 <br><br>
 
 ## 2. How to Install Kubeflow
@@ -41,5 +41,5 @@ Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습�
 - GPU: GeForce RTX 3070
 
 설치 방법은 블로그에 자세히 기록했습니다.  
-링크: [Ubuntu 20.04에서 docker 및 쿠버네티스와 쿠브플로우 설치하기](https://seokii.tistory.com/203)
+링크: [Ubuntu 20.04에서 docker 및 쿠버네티스와 쿠브플로우 설치하기](https://seokii.tistory.com/203){: target="_blank"}
 
