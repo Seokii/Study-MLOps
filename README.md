@@ -1,9 +1,10 @@
-# Study_Kubeflow
+# Kubeflow Tutorial
 Kubeflow를 공부하며 자료를 남기기 위해 생성한 저장소입니다.  
 Kubeflow는 참고할 만한 자료가 상대적으로 적어 공부하기가 어렵다고 생각합니다.  
 누군가 이 저장소를 보고 MLOps에 대한 전반적인 과정을 Kubeflow로 쉽게 접근할 수 있으면 하는 바람으로 작성하고 있습니다.  
 Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습니다.  
 [https://seokii.tistory.com/category/MLOps](https://seokii.tistory.com/category/MLOps)
+<br><br>
 
 ## 1. What's Kubernetes & Kubeflow?
 **도커(Docker)** 라는 컨테이너 오픈소스가 등장하고 기존의 단점을 극복한 컨테이너 개발 시대가 급격하게 발전해왔습니다.  
@@ -31,6 +32,7 @@ Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습�
 참고 사이트
 - [쿠버네티스란 무엇인가?](https://kubernetes.io/ko/docs/concepts/overview/)  
 - [쿠브플로우 공식사이트](https://www.kubeflow.org/)  
+<br><br>
 
 ## 2. How to Install Kubeflow
 다음은 제 PC 사양 및 구성입니다.
