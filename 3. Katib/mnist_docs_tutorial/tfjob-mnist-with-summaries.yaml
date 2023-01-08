@@ -1,0 +1,66 @@
+---
+apiVersion: kubeflow.org/v1beta1
+kind: Experiment
+metadata:
+  namespace: kubeflow
+  name: tfjob-mnist-with-summaries
+spec:
+  parallelTrialCount: 3
+  maxTrialCount: 12
+  maxFailedTrialCount: 3
+  objective:
+    type: maximize
+    goal: 0.99
+    objectiveMetricName: accuracy
+  algorithm:
+    algorithmName: random
+  metricsCollectorSpec:
+    source:
+      fileSystemPath:
+        path: /mnist-with-summaries-logs/test
+        kind: Directory
+    collector:
+      kind: TensorFlowEvent
+  parameters:
+    - name: learning_rate
+      parameterType: double
+      feasibleSpace:
+        min: "0.01"
+        max: "0.05"
+    - name: batch_size
+      parameterType: int
+      feasibleSpace:
+        min: "32"
+        max: "64"
+  trialTemplate:
+    primaryContainerName: tensorflow
+    # In this example we can collect metrics only from the Worker pods.
+    primaryPodLabels:
+      training.kubeflow.org/replica-type: worker
+    trialParameters:
+      - name: learningRate
+        description: Learning rate for the training model
+        reference: learning_rate
+      - name: batchSize
+        description: Batch Size
+        reference: batch_size
+    trialSpec:
+      apiVersion: kubeflow.org/v1
+      kind: TFJob
+      spec:
+        tfReplicaSpecs:
+          Worker:
+            replicas: 2
+            restartPolicy: OnFailure
+            template:
+              spec:
+                containers:
+                  - name: tensorflow
+                    image: docker.io/kubeflowkatib/tf-mnist-with-summaries:latest
+                    command:
+                      - "python"
+                      - "/opt/tf-mnist-with-summaries/mnist.py"
+                      - "--epochs=1"
+                      - "--learning-rate=${trialParameters.learningRate}"
+                      - "--batch-size=${trialParameters.batchSize}"
+                      - "--log-path=/mnist-with-summaries-logs"
