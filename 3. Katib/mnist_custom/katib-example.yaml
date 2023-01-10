@@ -1,0 +1,64 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Experiment
+metadata:
+  namespace: kubeflow-user-example-com
+  name: mnist-katib-random
+spec:
+  objective:
+    type: maximize
+    goal: 0.99
+    objectiveMetricName: val-acc
+    additionalMetricNames:
+      - val-loss
+  algorithm:
+    algorithmName: random
+  parallelTrialCount: 3
+  maxTrialCount: 60
+  maxFailedTrialCount: 3
+  parameters:
+    - name: learning_rate
+      parameterType: double
+      feasibleSpace:
+        min: "0.01"
+        max: "0.2"
+    - name: dropout
+      parameterType: double
+      feasibleSpace:
+        min: "0.1"
+        max: "0.5"
+    - name: opt
+      parameterType: int
+      feasibleSpace:
+        min: "0"
+        max: "1"
+  trialTemplate:
+    primaryContainerName: training-container
+    trialParameters:
+      - name: learning_rate
+        description: Learning Rate for modeling training
+        reference: learning_rate
+      - name: dropout
+        description: dropout rate
+        reference: dropout
+      - name: opt
+        description: Optimizer for modeling training
+        reference: opt
+    trialSpec:
+      apiVersion: batch/v1
+      kind: Job
+      spec:
+        template:
+          metadata:
+            annotations:
+              sidecar.istio.io/inject: "false"
+          spec:
+            containers:
+              - name: training-container
+                image: seokii/mnist-katib-random:0.0.4
+                command:
+                  - "python"
+                  - "/mnist-katib-random.py"
+                  - "--learning_rate=${trialParameters.learning_rate}"
+                  - "--dropout=${trialParameters.dropout}"
+                  - "--opt=${trialParameters.opt}"
+            restartPolicy: Never
