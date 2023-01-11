@@ -1,8 +1,8 @@
-# Kubeflow Tutorial
-Kubeflow를 공부하며 자료를 남기기 위해 생성한 저장소입니다.  
+# MLOps Tutorial
+Kubeflow와 MLflow 등 MLOps에 대한 내용을 공부하며 자료를 남기기 위해 생성한 저장소입니다.  
 Kubeflow는 참고할 만한 자료가 상대적으로 적어 공부하기가 어렵다고 생각합니다.  
 누군가 이 저장소를 보고 MLOps에 대한 전반적인 과정을 Kubeflow로 쉽게 접근할 수 있으면 하는 바람으로 작성하고 있습니다.  
-Kubeflow에 대한 내용을 블로그에서 글을 작성해 다루고 있습니다.  
+Kubeflow와 MLOps에 대한 내용을 블로그에서 글을 작성해 다루고 있습니다.  
 [https://seokii.tistory.com/category/MLOps](https://seokii.tistory.com/category/MLOps)
 <br><br>
 
