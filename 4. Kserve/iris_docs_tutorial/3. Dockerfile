@@ -1,0 +1,4 @@
+FROM python:3.8.5
+
+RUN pip install scikit-learn==1.2.0 joblib
+ADD sklearn_rf_iris.py /
