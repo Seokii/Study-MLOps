@@ -38,7 +38,7 @@ Kubeflow와 MLOps에 대한 내용을 블로그에서 글을 작성해 다루고
 다음은 제 PC 사양 및 구성입니다.
 - OS: Ubuntu 20.04 LTS
 - CPU: AMD Ryzen 5 5600X 6-Core Processor
-- GPU: GeForce RTX 3070
+- GPU: GeForce RTX 3070 & CUDA 11.2
 
 설치 방법은 블로그에 자세히 기록했습니다.  
 링크: [Ubuntu 20.04에서 docker 및 쿠버네티스와 쿠브플로우 설치하기](https://seokii.tistory.com/203)

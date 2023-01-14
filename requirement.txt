@@ -1,0 +1,7 @@
+kfp==1.8.9
+scikit-learn==1.0.1
+mlflow==1.21.0
+pandas==1.3.4
+dill==0.3.4
+kubeflow-fairing==0.7.1
+tensorflow==2.10.0
