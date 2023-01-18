@@ -6,5 +6,6 @@ dill==0.3.4
 kubeflow-fairing==1.0.0
 msrestazure==0.6.4
 tensorflow==2.10.0
-numpy==1.20.0
+numpy==1.20.3
 kfserving==0.6.1
+pandas==1.5.2
