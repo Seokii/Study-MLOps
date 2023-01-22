@@ -1,10 +1,30 @@
 from kfp.components import InputPath, OutputPath, create_component_from_func
 from kfp.dsl import pipeline
 from functools import partial
+import kfp
 
 @partial(
     create_component_from_func,
-    packages_to_install = ["dill==0.3.4", "pandas==1.5.2", "scikit-learn==1.0.1"]
+    packages_to_install = ["pandas", "dill", "scikit-learn==1.0.1"],
+)
+def load_iris_data(
+        data_path: OutputPath("csv"),
+        target_path: OutputPath("csv"),
+):
+    import pandas as pd
+    from sklearn.datasets import load_iris
+    iris = load_iris()
+
+    data = pd.DataFrame(iris["data"], columns=iris["feature_names"])
+    target = pd.DataFrame(iris["target"], columns=["target"])
+
+    data.to_csv(data_path, index=False)
+    target.to_csv(target_path, index=False)
+
+
+@partial(
+    create_component_from_func,
+    packages_to_install = ["pandas", "dill", "scikit-learn==1.0.1"],
 )
 def train_from_csv(
     train_data_path: InputPath("csv"),
@@ -25,20 +45,6 @@ def train_from_csv(
     with open(model_path, mode="wb") as file_writer:
         dill.dump(clf, file_writer)
 
-@create_component_from_func
-def load_iris_data(
-        data_path: OutputPath("csv"),
-        target_path: OutputPath("csv"),
-):
-    import pandas as pd
-    from sklearn.datasets import load_iris
-    iris = load_iris()
-
-    data = pd.DataFrame(iris["data"], columns=iris["feature_names"])
-    target = pd.DataFrame(iris["target"], columns=["target"])
-
-    data.to_csv(data_path, index=False)
-    target.to_csv(target_path, index=False)
 
 @pipeline(name="complex_pipeline")
 def complex_pipeline(kernel: str):
@@ -48,3 +54,6 @@ def complex_pipeline(kernel: str):
         train_target = iris_data.outputs["target"],
         kernel = kernel,
     )
+
+if __name__ == "__main__":
+    kfp.compiler.Compiler().compile(complex_pipeline, "complex_pipeline.yaml")
